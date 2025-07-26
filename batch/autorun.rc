@@ -1,0 +1,32 @@
+# Designed to be used in conjunction with runcms.
+# See runcms for more information.
+
+script autologgcc.rc
+pause 1
+devinit 00c hercauto.exec ascii eof
+devinit 580 IO/pctomf.tdf
+devinit 581 IO/mftopc.het
+pause 1
+/set blip off
+pause 1
+/access 191 d
+pause 1
+/access 291 a (erase
+pause 1
+/access 391 b (erase
+pause 1
+/access 491 c
+pause 1
+/att 580 * 181
+pause 1
+/tape rew
+pause 1
+/tape fsf 0
+pause 1
+/att 581 * 182
+pause 1
+/readcard hercauto exec
+pause 1
+hao tgt Ready;
+hao cmd script termvm.rc
+/exec hercauto

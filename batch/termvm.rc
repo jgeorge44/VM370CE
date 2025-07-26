@@ -1,0 +1,5 @@
+# Used when shutting down VM. We pause a couple of seconds
+# for any disk caching, but ultimately it's not very subtle!
+
+pause 2
+quit

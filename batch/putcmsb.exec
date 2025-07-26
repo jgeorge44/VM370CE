@@ -1,0 +1,19 @@
+
+* This exec is called by putcms to allow some arbitrary files
+* (binary) to be sent up to the mainframe.
+
+
+&SRC = A
+
+
+&IF &INDEX EQ 0 &GOTO -FINARGS
+&SRC = &1
+
+-FINARGS
+
+
+* Strictly, we're only expecting a blocksize of 80, but
+* mvsunzip can handle short blocks, so we specify the max
+FILEDEF INPUT TAP1 (LRECL 80 BLKSIZE 32720 RECFM FB
+MVSUNZIP DD:INPUT &SRC BINARY
+FILEDEF INPUT CLEAR

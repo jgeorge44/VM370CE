@@ -1,0 +1,11 @@
+script autologgcc.rc
+pause 2
+script dumpmini2.rc
+pause 2
+devinit 580 dumpmini.aws
+pause 2
+/attach 580 * 181
+pause 2
+hao tgt Ready
+hao cmd script termvm.rc
+/vmarc pack * * b (tap1 block 80

@@ -1,0 +1,13 @@
+# Used by restmini to restore a minidisk
+
+script autologgcc.rc
+pause 2
+script restmini2.rc
+pause 2
+devinit 580 IO/hercauto.tdf
+pause 2
+/attach 580 * 181
+pause 2
+hao tgt Ready
+hao cmd script termvm.rc
+/vmarc unpack (tap1 replace

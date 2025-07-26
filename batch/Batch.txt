@@ -1,0 +1,81 @@
+VM/380 Batch Files
+------------------
+
+These batch files can be used from a command prompt in Windows to invoke VM/380 and perform many useful tasks.  Invoke the batch files with no arguments to have syntax information displayed.
+
+
+
+Installation
+------------
+
+Copy the contents of this directory to the SixPack directory (copy *.* ..).  Then set the environment variable "VM380" to the name of the directory in which the batch files are located, for example, "c:\SixPack".
+
+
+
+The Batch Files
+---------------
+
+startcms
+
+Use the startcms batch file to log on to GCCCMS automatically via the integrated console.
+
+
+runcms
+
+Use the runcms batch file to run compiles or other execs under GCCCMS.  See products such as "sedmvs" which have an "allcms.bat" that invokes runcms in order to do an automated build under CMS. A very neat way of packaging a product for general distribution.
+
+
+putcms
+
+Use the putcms batch file to transfer files from Windows to CMS.
+
+
+dumpmini
+
+Use the dumpmini batch file to dump a minidisk into a VMarc file. Once you have the vmarc file there are utilities (such as VMARC) that allow you to extract the data on the PC.
+
+
+erasemini
+
+Use the erasemini batch file to erase a minidisk, typically done before
+running putcms to enable remote construction of a minidisk.
+
+
+restmini
+
+Use the restmini batch file to transfer the contents of a VMarc file (for example one created by dumpmini) to a CMS minidisk.
+
+
+memtest
+
+Use the memtest batch file to run a sample 31-bit program to demonstrate the 31-bit feature of VM/380.
+
+
+These are the files that make up the VM/380 batch file suite:
+
+dummy
+nl.aws                  (in the IO directory)
+dumpmini.bat
+erasemini.bat
+memtest.bat
+putcms.bat
+restmini.bat
+runcms.bat
+startcms.bat
+dumpsrc.exec
+memtest.exec
+null.exec
+putcmsb.exec
+autologgcc.rc
+autologmaint.rc
+autorun.rc
+dumpmini.rc
+erasemini.rc
+hercules.rc
+null.rc
+restmini.rc
+termvm.rc
+pctomf_bin.tdf          (in the IO directory)
+pctomf_text.tdf         (in the IO directory)
+memtest.txt
+null.zip

@@ -1,0 +1,24 @@
+* Usage - DUMPSRC <SRC>
+
+* This script is called by runcms for the presumably unusual
+* situation where a caller wishes to have a copy of their
+* own source code (which they just uploaded) in vmarc format.
+
+
+&SRC = A
+
+
+&IF &INDEX EQ 0 &GOTO -FINARGS
+&SRC = &1
+
+-FINARGS
+
+
+* Strictly, we're only expecting a blocksize of 80, but
+* mvsunzip can handle short blocks, so we specify the max
+FILEDEF INPUT TAP1 (LRECL 80 BLKSIZE 32720 RECFM FB
+MVSUNZIP DD:INPUT &SRC
+FILEDEF INPUT CLEAR
+
+
+VMARC PACK * * &SRC (TAP2 BLOCK 80

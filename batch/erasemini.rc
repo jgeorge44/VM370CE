@@ -1,0 +1,5 @@
+script autologgcc.rc
+pause 2
+script erasemini2.rc
+pause 10
+script termvm.rc

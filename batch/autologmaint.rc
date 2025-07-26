@@ -1,0 +1,15 @@
+panrate 1000
+/cold
+ipl 141
+pause 6
+/cp start 00c
+pause 3
+/cp disc
+pause 2
+/logon maint cpcms
+pause 4
+
+
+# for some reason it helps if we stick a command in sometimes
+/set blip off
+pause 1

@@ -1,0 +1,13 @@
+* This exec is called by memtest.bat as a demonstration
+* of VM/380's 31-bit capability.
+
+* Strictly, we're only expecting a blocksize of 80, but
+* mvsunzip can handle short blocks, so we specify the max
+FILEDEF INPUT TAP1 (LRECL 80 BLKSIZE 32720 RECFM FB
+MVSUNZIP DD:INPUT &SRC
+FILEDEF INPUT CLEAR
+
+FILEDEF OUT DISK MEMTEST MODPACK (LRECL 800 RECFM F
+MVSENDEC DECB "MEMTEST TXT" DD:OUT
+COPY MEMTEST MODPACK A MEMTEST MODULE A (UNPACK
+MEMTEST

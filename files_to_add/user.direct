@@ -585,11 +585,14 @@ USER TK4 TK4 8M 16M G
  OPTION ECMODE VIRT=REAL STFIRST                                        
  IPL 148                                                                
  CONSOLE 009 3215                                                       
- SPOOL 00C 2540 READER *                                                
+* SPOOL 00C 2540 READER *                                                
  SPOOL 00D 2540 PUNCH A                                                 
  SPOOL 00E 1403 A                                                       
  SPOOL 00F 1403 A                                                       
  SPOOL 30E 1403 A                                                       
+* MVS TK4 wants a dedicated reader for job submissions, otherwise
+* it hangs during shutdown
+ DEDICATE 00C 10C
 * Dedicated 2703 lines for NJE                                          
   DEDICATE 090 090                                                      
   DEDICATE 091 091                                                      

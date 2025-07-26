@@ -1,0 +1,366 @@
+NAS      TITLE '  DMKRIO       VM/370 RELEASE 6 - SixPack Version 1.2'  
+DMKRIO   CSECT                                                          
+         EJECT                                                          
+**********************************************************************  
+**                                                                  **  
+**  THIS IS A NEW I/O GEN TO SUIT THE TURNKEY (4) MVS SYSTEM        **  
+**                                                                  **  
+**                                                                  **  
+**********************************************************************  
+*****  CHANNEL ZERO (000) DEVICES                                *****  
+**********************************************************************  
+         SPACE 2                                                        
+         RDEVICE ADDRESS=(004,7),DEVTYPE=3215                           
+         RDEVICE ADDRESS=00C,DEVTYPE=2540R                              
+         RDEVICE ADDRESS=00D,DEVTYPE=2540P,CLASS=P                      
+         RDEVICE ADDRESS=00E,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=00F,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=(010,7),DEVTYPE=3277                           
+         RDEVICE ADDRESS=01F,DEVTYPE=3215                               
+         RDEVICE ADDRESS=(020,16),DEVTYPE=2701,ADAPTER=TELE2            
+         RDEVICE ADDRESS=(040,16),DEVTYPE=2703,ADAPTER=BSCA             
+         RDEVICE ADDRESS=(090,16),DEVTYPE=2703,ADAPTER=BSCA             
+         RDEVICE ADDRESS=(0C0,16),DEVTYPE=3278,MODEL=DYNAMIC            
+**********************************************************************  
+*****  CHANNEL ONE (100) DEVICES                                 *****  
+**********************************************************************  
+         RDEVICE ADDRESS=102,DEVTYPE=3211,CLASS=(M)                     
+         RDEVICE ADDRESS=103,DEVTYPE=3211,CLASS=(M)                     
+         RDEVICE ADDRESS=10C,DEVTYPE=2540R,CLASS=Z                      
+         RDEVICE ADDRESS=10D,DEVTYPE=2540P,CLASS=Z                      
+         RDEVICE ADDRESS=10E,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=10F,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=(130,16),DEVTYPE=2314                          
+         RDEVICE ADDRESS=(140,16),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(150,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(160,16),DEVTYPE=3340                          
+         RDEVICE ADDRESS=(170,16),DEVTYPE=3375,CLASS=DASD               
+         RDEVICE ADDRESS=(180,16),DEVTYPE=3380                          
+         RDEVICE ADDRESS=(190,16),DEVTYPE=3390,CLASS=DASD               
+         RDEVICE ADDRESS=(1A0,16),DEVTYPE=3380                          
+*        RDEVICE ADDRESS=(1B0,16),DEVTYPE=3390,CLASS=DASD               
+         RDEVICE ADDRESS=(1C0,7),DEVTYPE=3278,MODEL=4                   
+         RDEVICE ADDRESS=1C7,DEVTYPE=3284                               
+         RDEVICE ADDRESS=(1C8,7),DEVTYPE=3277                           
+         RDEVICE ADDRESS=1CF,DEVTYPE=3284                               
+**********************************************************************  
+*****  CHANNEL TWO (200) DEVICES                                 *****  
+**********************************************************************  
+         RDEVICE ADDRESS=202,DEVTYPE=3211,CLASS=(M)                     
+         RDEVICE ADDRESS=203,DEVTYPE=3211,CLASS=(M)                     
+         RDEVICE ADDRESS=20C,DEVTYPE=2540R,CLASS=Z                      
+         RDEVICE ADDRESS=20D,DEVTYPE=2540P,CLASS=Z                      
+         RDEVICE ADDRESS=20E,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=20F,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=(220,16),DEVTYPE=2314                          
+         RDEVICE ADDRESS=(230,16),DEVTYPE=2314                          
+         RDEVICE ADDRESS=(240,16),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(250,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(260,16),DEVTYPE=3340                          
+         RDEVICE ADDRESS=(270,16),DEVTYPE=3375,CLASS=DASD               
+         RDEVICE ADDRESS=(280,16),DEVTYPE=3380                          
+         RDEVICE ADDRESS=(290,16),DEVTYPE=3390,CLASS=DASD               
+         RDEVICE ADDRESS=(2C0,7),DEVTYPE=3278,MODEL=4                   
+         RDEVICE ADDRESS=2C7,DEVTYPE=3284                               
+         RDEVICE ADDRESS=(2C8,7),DEVTYPE=3277                           
+         RDEVICE ADDRESS=2CF,DEVTYPE=3284                               
+**********************************************************************  
+*****  CHANNEL THREE (300) DEVICES                               *****  
+**********************************************************************  
+         RDEVICE ADDRESS=302,DEVTYPE=3211,CLASS=(M)                     
+         RDEVICE ADDRESS=303,DEVTYPE=3211,CLASS=(M)                     
+         RDEVICE ADDRESS=30C,DEVTYPE=2540R,CLASS=Z                      
+         RDEVICE ADDRESS=30D,DEVTYPE=2540P,CLASS=Z                      
+         RDEVICE ADDRESS=30E,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=30F,DEVTYPE=1403,FEATURE=UNVCHSET,CLASS=A      
+         RDEVICE ADDRESS=(330,16),DEVTYPE=2314                          
+         RDEVICE ADDRESS=(340,16),DEVTYPE=3340                          
+         RDEVICE ADDRESS=(350,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(360,16),DEVTYPE=3350                          
+*        RDEVICE ADDRESS=(370,16),DEVTYPE=3375,CLASS=DASD               
+         RDEVICE ADDRESS=(380,16),DEVTYPE=3380                          
+         RDEVICE ADDRESS=(390,16),DEVTYPE=3390,CLASS=DASD               
+         RDEVICE ADDRESS=(3C0,7),DEVTYPE=3278,MODEL=4                   
+         RDEVICE ADDRESS=3C7,DEVTYPE=3284                               
+         RDEVICE ADDRESS=(3C8,7),DEVTYPE=3277                           
+         RDEVICE ADDRESS=3CF,DEVTYPE=3284                               
+**********************************************************************  
+*****  CHANNEL FOUR (400) DEVICES                                *****  
+**********************************************************************  
+         RDEVICE ADDRESS=(400,16),DEVTYPE=3420,MODEL=8                  
+         RDEVICE ADDRESS=(440,16),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(480,16),DEVTYPE=3420,MODEL=8                  
+*        RDEVICE ADDRESS=(4A0,16),DEVTYPE=3480                          
+**********************************************************************  
+*****  CHANNEL FIVE (500) DEVICES                                *****  
+**********************************************************************  
+         RDEVICE ADDRESS=(500,8),DEVTYPE=CTCA                           
+         RDEVICE ADDRESS=(510,8),DEVTYPE=CTCA                           
+         RDEVICE ADDRESS=(540,16),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(580,16),DEVTYPE=3420,MODEL=8,FEATURE=DUALDENS 
+**********************************************************************  
+*****  CHANNEL SIX (600) DEVICES                                 *****  
+**********************************************************************  
+         RDEVICE ADDRESS=(600,8),DEVTYPE=CTCA                           
+         RDEVICE ADDRESS=(610,8),DEVTYPE=CTCA                           
+         RDEVICE ADDRESS=(630,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(640,16),DEVTYPE=3330,MODEL=1                  
+         RDEVICE ADDRESS=(6A0,32),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(6D0,16),DEVTYPE=2314                          
+         RDEVICE ADDRESS=(6F0,16),DEVTYPE=3350                          
+**********************************************************************  
+*****  CHANNEL SEVEN (700) DEVICES                               *****  
+**********************************************************************  
+         RDEVICE ADDRESS=(700,32),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(730,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(740,16),DEVTYPE=3330,MODEL=1                  
+         RDEVICE ADDRESS=(7A0,32),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(7F0,16),DEVTYPE=3350                          
+**********************************************************************  
+*****  CHANNEL EIGHT (800) DEVICES                               *****  
+**********************************************************************  
+         RDEVICE ADDRESS=(830,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(840,16),DEVTYPE=3330,MODEL=1                  
+         RDEVICE ADDRESS=(8A0,32),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(8F0,16),DEVTYPE=3350                          
+**********************************************************************  
+*****  CHANNEL NINE (900) DEVICES                                *****  
+**********************************************************************  
+         RDEVICE ADDRESS=(930,16),DEVTYPE=3330,MODEL=11                 
+         RDEVICE ADDRESS=(940,16),DEVTYPE=3330,MODEL=1                  
+         RDEVICE ADDRESS=(9A0,32),DEVTYPE=3350                          
+         RDEVICE ADDRESS=(9F0,16),DEVTYPE=3350                          
+**********************************************************************  
+*****  CHANNEL TEN (A00) DEVICES                                 *****  
+**********************************************************************  
+*        RDEVICE ADDRESS=(A00,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(A20,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(A40,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(A60,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(A80,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(AA0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(AC0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(AE0,32),DEVTYPE=3390                          
+**********************************************************************  
+*****  CHANNEL ELEVEN (B00) DEVICES                              *****  
+**********************************************************************  
+*        RDEVICE ADDRESS=(B00,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(B20,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(B40,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(B60,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(B80,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(BA0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(BC0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(BE0,32),DEVTYPE=3390                          
+**********************************************************************  
+*****  CHANNEL TWELVE (C00) DEVICES                              *****  
+**********************************************************************  
+*        RDEVICE ADDRESS=(C00,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(C20,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(C40,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(C60,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(C80,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(CA0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(CC0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(CE0,32),DEVTYPE=3390                          
+**********************************************************************  
+*****  CHANNEL THIRTEEN (D90) DEVICES                            *****  
+**********************************************************************  
+*        RDEVICE ADDRESS=(D00,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(D20,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(D40,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(D60,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(D80,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(DA0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(DC0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(DE0,32),DEVTYPE=3390                          
+**********************************************************************  
+*****  CHANNEL FOURTEEN (E00) DEVICES                            *****  
+**********************************************************************  
+*        RDEVICE ADDRESS=(E00,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(E20,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(E40,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(E60,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(E80,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(EA0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(EC0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(EE0,32),DEVTYPE=3390                          
+**********************************************************************  
+*****  CHANNEL FIFTEEN (F00) DEVICES                             *****  
+**********************************************************************  
+*        RDEVICE ADDRESS=(F00,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(F20,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(F40,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(F60,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(F80,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(FA0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(FC0,32),DEVTYPE=3390                          
+*        RDEVICE ADDRESS=(FE0,32),DEVTYPE=3390                          
+**********************************************************************  
+*****  CONTROL UNIT DEFINITIONS                                  *****  
+**********************************************************************  
+         RCTLUNIT ADDRESS=000,CUTYPE=3811                               
+         RCTLUNIT ADDRESS=008,CUTYPE=2821                               
+         RCTLUNIT ADDRESS=010,CUTYPE=2821                               
+         RCTLUNIT ADDRESS=018,CUTYPE=3215                               
+         RCTLUNIT ADDRESS=020,CUTYPE=2701,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=040,CUTYPE=2703,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=090,CUTYPE=2703,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=0C0,CUTYPE=3272,FEATURE=32-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=100,CUTYPE=2821,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=130,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=140,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=150,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=160,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=170,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=180,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=190,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=1A0,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=1B0,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=1C0,CUTYPE=3272,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=200,CUTYPE=2821,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=220,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=230,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=240,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=250,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=260,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=270,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=280,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=290,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=2A0,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=2C0,CUTYPE=3272,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=300,CUTYPE=2821,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=330,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=340,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=350,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=360,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=370,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=380,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=390,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=3B0,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=3C0,CUTYPE=3272,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=400,CUTYPE=3420,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=440,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=480,CUTYPE=3420,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=4A0,CUTYPE=3420,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=4F0,CUTYPE=3830,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=500,CUTYPE=3088                               
+         RCTLUNIT ADDRESS=510,CUTYPE=3088                               
+         RCTLUNIT ADDRESS=540,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=580,CUTYPE=3803,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=5F0,CUTYPE=3830,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=600,CUTYPE=3088                               
+         RCTLUNIT ADDRESS=610,CUTYPE=3088                               
+         RCTLUNIT ADDRESS=630,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=640,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=6A0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=6D0,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=6F0,CUTYPE=3830,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=700,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=730,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=740,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=7A0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=7F0,CUTYPE=3830,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=830,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=840,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=8A0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=8F0,CUTYPE=3830,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=930,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=940,CUTYPE=3830,FEATURE=16-DEVICE             
+         RCTLUNIT ADDRESS=9A0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=9F0,CUTYPE=3830,FEATURE=16-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=A00,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=A20,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=A40,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=A60,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=A80,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=AA0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=AC0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=AE0,CUTYPE=3830,FEATURE=32-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=B00,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=B20,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=B40,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=B60,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=B80,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=BA0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=BC0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=BE0,CUTYPE=3830,FEATURE=32-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=C00,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=C20,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=C40,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=C60,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=C80,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=CA0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=CC0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=CE0,CUTYPE=3830,FEATURE=32-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=D00,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=D20,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=D40,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=D60,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=D80,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=DA0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=DC0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=DE0,CUTYPE=3830,FEATURE=32-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=E00,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=E20,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=E40,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=E60,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=E80,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=EA0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=EC0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=EE0,CUTYPE=3830,FEATURE=32-DEVICE             
+*                                                                       
+         RCTLUNIT ADDRESS=F00,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=F20,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=F40,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=F60,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=F80,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=FA0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=FC0,CUTYPE=3830,FEATURE=32-DEVICE             
+         RCTLUNIT ADDRESS=FE0,CUTYPE=3830,FEATURE=32-DEVICE             
+**********************************************************************  
+*****  CHANNEL UNIT DEFINITIONS                                  *****  
+**********************************************************************  
+         RCHANNEL ADDRESS=0,CHTYPE=MULTIPLEXOR                          
+         RCHANNEL ADDRESS=1,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=2,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=3,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=4,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=5,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=6,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=7,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=8,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=9,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=A,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=B,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=C,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=D,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=E,CHTYPE=BLKMPXR                              
+         RCHANNEL ADDRESS=F,CHTYPE=BLKMPXR                              
+**********************************************************************  
+*****  CONSOLE UNIT DEFINITIONS                                  *****  
+**********************************************************************  
+         RIOGEN CONS=010,ALTCONS=(011,009)                              
+         END                                                            
+
+
+
+
+
+
+
+

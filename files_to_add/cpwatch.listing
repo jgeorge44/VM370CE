@@ -1,0 +1,555 @@
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                                A VM/370 Online Monitor
++                                _ __ ___ ______ _______
+-
+-
+-
+-
+                    CPWATCH is  an online  performance monitor  for VM/370.
+               It displays enough about the current activity of CP to allow
+               an intuitive grasp of system load, gross conflicts,  and the
+               currently active users.
+0                   It displays its output on DIALled local 3270 MOD 2's.
+0                   CPWATCH 3.3 has been  developed exclusively on a VM/370
+               system using  Basic Systems  Extensions,  5748-XX8,   but it
+               should be  easy to  adapt to unmodified  VM/370,  or  to the
+               Systems Extension Program.
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+0                                         - 1 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                                      DESCRIPTION
++                                      ___________
+-
+-              CURRENT STATE
++              _______ _____
+0                   Operational,  stabilized.    Running on a 4331,   and a
+               3031AP,   under  VM/370  Release  6.11  with  Basic  Systems
+               Extensions (5748-XX8).
+-
+               OPERATION
++              _________
+0                   The  monitoring machine must  have class  E privledges.
+               Command "CPWX" will build a load deck and IPL it.  'DMKLD00E
+               LOADER' must be available on an accessed disk.
+0                    It is  easiest to  AUTOLOG the  monitoring machine  at
+               VM/370 IPL time.
+0                    Note that  this  program  examines CP's  linked  lists
+               asynchronously,   and interruptable.    Each examination  is
+               *not* at an instant of time,  but spread over some period of
+               time; the data it receives may be inconsistant.  To minimize
+               this,  the monitoring machine should run at maximum priority
+               (priority = 1).   The machine will run compute bound when it
+               runs,   but  that  is  for short  intervals  (order  of  200
+               milliseconds) every 10 seconds; the performance impact, even
+               on online applications,  should be  minimal,  and the output
+               will be much better.
+0                   To  access,  use the CP  DIAL command on a  local 3270.
+               The  first  screen  displayed  shows  a  menu  of  available
+               commands.
+-
+               FUTURE DEVELOPMENT
++              ______ ___________
+0
+0                   Hard copy output is intended, sometime.  It would be in
+               the form of screen images written on the printer.
+0                   Direct display to the console of the monitoring Virtual
+               Machine, using the EDGAR interface,  is planned.   This will
+               allow someone  logged on the  monitoring machine  to control
+               CP's tuning parameters, and see the result (if any)  of each
+               change.
+-
+                                          - 2 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                   The use  of the Virtual Machine  Communication Facility
+               to send  displays to users  logged on remote  displays,  for
+               display using the EDGAR interface, is a possibility.
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+0                                         - 3 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                                        DISPLAYS
++                                        ________
+-                   The following listings of displays show the name of the
+               the display  and the PFkey  to get to  it in the  title.   A
+               short description of each entry is provided.
+0                    The   ENTER  key   steps  from   display  to   display
+               sequentially, excepting 'System Synonym Table' and 'Clock'.
+0                   There are commands to get  to each one of the displays,
+               if the 3270 has no PFkeys.
+0                    For Systems  Programmers  into  tuning (or  trying  to
+               understand)   VM/370,  the  sources of  the information  are
+               named.  Users just trying to get a feel for what VM is doing
+               should ignore them.
+-
+               Menu - PF1
++              ____   ___
+0                   The Menu is brought up when you first DIAL in,  and can
+               be  called by  PF1.     It displays  the  names of  displays
+               available, and how to get to them.
+-
+               System Status - PF2
++              ______ ______   ___
+0                   The System Status display carries the information about
+               the operation  of the overall  VM/370 system.   It  is taken
+               mostly from DMKPSA; some information is accumulated from the
+               scan  of VMBLOKs  and  of RDEVBLOKs,   and  some comes  from
+               locations named in DMKSYM.
+0                   There are four columns on the display,  each reflecting
+               a different class of data.
+-              CPU USAGE column
++              CPU USAGE column
+0                   This covers the actual use that the CPU cycles were put
+               to over the last snap interval.  All values are expressed in
+               percentages.
+0                   Problem  State -  time with  a  problem state  PSW
++                   Problem  State
+                         loaded,   i.e.  when  a  Virtual Machine  was
+                         dispatched (PROBTIME in DMKPSA).
+0                   Page Wait  -  time  in   wait  state,   when  most
++                   Page Wait
+                         outstanding I/O  requests were  for page  I/O
+                         (PAGEWAIT in DMKPSA).
+-                                         - 4 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                   I/O Wait -  time in wait state,   most outstanding
++                   I/O Wait
+                         I/O requests  were for  fast devices  and not
+                         for paging (IONTWAIT in DMKPSA).
+0                   Idle Wait - time in  wait state,  most outstanding
++                   Idle Wait
+                         I/O  requests  were  to  slow  (ie  terminal)
+                         devices (IDLEWAIT in DMKPSA).
+0                   Overhead  -  time executing  in  supervisor  state
++                   Overhead
+                         (100% minus all the above).
+0                   The  next two lines offer  a summary of  the preceeding
+               four:
+0                   CPU Busy - Problem State + Overhead.
++                   CPU Busy
+0                   CPU Idle - Page Wait + I/O Wait + Idle Wait.
++                   CPU Idle
+0                   The next line normally is blank  if the value is a true
+               zero:
+0                   SVC Rate - the number of  SVC's per second handled
++                   SVC Rate
+                         by CP (PSASVCCT in DMKPSA).   When running VM
+                         ASSIST with ASSIST ON,SVC  only SVC 76 (Error
+                         Recording) will be handled by CP.   Note that
+                         'CP  TRACE'  of  non-priveleged  instructions
+                         results in  SVC ASSIST  being turned  off for
+                         the duration of the trace.
+-              STORAGE column
++              STORAGE column
+0                   These values measure the  allocation of real core,  and
+               the paging operations used to keep it going.
+0                   Real Core - the  total (K)  of real  memory on the
++                   Real Core
+                         machine and being used by CP (DMKSYSRM).
+0                   Free Core - the total (K)  of real memory which is
++                   Free Core
+                         being available  to pageable usage,   ie Real
+                         Core less the non-pageable nucleus less pages
+                         fixed for I/O less locked pages (DMKDSPNP).
+0                   VM calculated paging performance:
+0                   Page Rate  -  page  reads  plus  page  writes  per
++                   Page Rate
+                         second (PAGERATE in DMKPSA)   smoothed over 8
+                         minutes.  Calculated in DMKSTP.
+0                   Page Load - Smoothed (over 8 minutes) average page
++                   Page Load
+                         wait  (PAGELOAD  in  DMKPSA.   Calculated  in
+                         DMKSTP.).
+-
+                                          - 5 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                   The following are taken  from locations in DMKPTR named
+               in the system name table.
+0                   Page Requests - page reads (PGREAD in DMKPSA) plus
++                   Page Requests
+                         pages   reclaimed   from   the   flush   list
+                         (DMKPTRPR), per second.   Should also include
+                         pages for  which no  read was  necessary,  ie
+                         pages which  had no  equivalent on  the flush
+                         list  or  on  auxiliary  storage,   but  this
+                         information  does not  seem  to be  available
+                         easily.
+0                   Flushes -  (DMKPTRFF)  page frames taken  from the
++                   Flushes
+                         flush list,  i.e.  containing pages marked by
+                         the LRU algorithm  as old and unlikely  to be
+                         used.
+0                   Steals  - (DMKPTRSS)   pages taken  from in  Queue
++                   Steals
+                         users.
+0                   Reclaimed - (DMKPTRPR)  pages  placed on the flush
++                   Reclaimed
+                         list,  but  requested again  before the  page
+                         frame was re-used.
+0
+0                   Share Res - (DMKPTRSC)  number of real page frames
++                   Share Res
+                         containing 'Shared Segment' pages.
+-              QUEUES
++              QUEUES
+0                   This column summarizes the users on the system.
+0                   Logged On - number of users logged on.   (DMKSYSNM
++                   Logged On
+                         in SYSLOCS)
+0                   Dialled  - number  of  local  3270 and  start-stop
++                   Dialled
+                         devices  which  have  accessed  a  multi-user
+                         virtual  machine   with  the   DIAL  command.
+                         (DMKSYSND in SYSLOCS).
+0                    The  following are  counted  during  the scan  of  the
+               VMBLOKs.   Since  this takes  place asynchronously  with the
+               maintainence of this chain,  the numbers are not necessarily
+               exact;  i.e., Active+Inactive+Asleep may not instantaneously
+               add up to Logged On.
+0                   Active  - number  of virtual  machines which  used
++                   Active
+                         some CPU time over the last snap interval.
+0                   Inactive -  number of virtual machines  which used
++                   Inactive
+                         no CPU time, but were not asleep.
+-                                         - 6 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                   Sleep  - number  of  virtual  machines which  have
++                   Sleep
+                         issued 'CP SLEEP' command.
+0
+0                   Queue 1 - number  of virtual machines found  in Q1
++                   Queue 1
+                         in last scan.
+0                   Queue 2 - ditto, Q2
++                   Queue 2
+0                   Queue 3 - ditto, Q3 (BSEP).
++                   Queue 3
+0                   Eligible - number of eligible users.
++                   Eligible
+-              CHANNEL SIOs
++              CHANNEL SIOs
+0                   This  gives the  START I/O  count per  second for  each
+               channel,  and the total START I/O's per second issued by the
+               system.   The information is accumulated  from a scan of the
+               system RDEVBLOKS.
+-
+               Terminal Device Status - PF3
++              ________ ______ ______   ___
+0                   This  display shows the  addresses,  and SIO  rate,  of
+               those real devices considered terminal devices.
+0                   ADDR - real address of the device (note for remote
++                   ADDR
+                         3270's,  entry  is by cluster rather  than by
+                         network name.
+0                   SIOS - SIO  rate to  this device  during the  last
++                   SIOS
+                         snap interval.
+0                   If  the device is ATTACHed  or DIALled to  a multi-user
+               virtual machine (rather than LOGged on), the letter 'A' will
+               display between the real address and  the SIO rate.   If the
+               device is a remote 327X cluster,   and is not dedicated (ie,
+               is run  by CP  for console  devices),  the  letter 'C'  will
+               appear.
+-
+-
+-
+-
+0                                         - 7 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0              Real Device Status - PF4
++              ____ ______ ______   ___
+0                   Display of all real devices not considered terminals.
+0                   ADDR - real address of the device.
++                   ADDR
+0                   SIOS - start i/o rate,  unsmoothed,  averaged over
++                   SIOS
+                         snap interval.
+0                   SERIAL - volume serial  number (for disk devices).
++                   SERIAL
+                         'CP' appears  in front of  the VOLSER  if the
+                         disk is CP owned.  If the device is dedicated
+                         to  a virtual  machine,   the  USERID of  the
+                         owning machine  is displayed  instead of  the
+                         VOLSER.
+-
+               All Users - PF5
++              ___ _____   ___
+0                    Display  information  about   all  LOGged  on  Virtual
+               Machines.
+0
+0                   USERID - name of the virtual machine.
++                   USERID
+0                   S - status.  May be 'A' (active),  'I' (inactive),
++                   S
+                         or 'S' (asleep).
+0                   CON - Real  Address  of  Console,   if  connected.
++                   CON
+                         Blank if disconnected,  4-digit Network ID if
+                         logged on  a remote 3270 cluster,   'VMPT' if
+                         logged on through VM Pass-through (5748-RC1).
+0                   PRIO - the user's dispatching priority,  1-99.  If
++                   PRIO
+                         the user is FAVORed,  it will be preceeded by
+                         an 'F'. If the user is FAVORed NN percent, it
+                         will be preceeded by a  '%'.  If the user has
+                         RESERVEd pages,   it will  be followed  by an
+                         'R'.
+0                   A virtual machine is considered 'Active' if it used any
+               CPU cycles in the last Snap Interval.
+-
+-
+-
+-                                         - 8 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0              Active Users - PF6
++              ______ _____   ___
+0                    Display information  about  resource  usage by  Active
+               users.
+0                   USERID - name of virtual machine (VMUSER).
++                   USERID
+0                   CON - Real  Address  of  Console,   if  connected.
++                   CON
+                         Blank if disconnected,  4-digit Network ID if
+                         logged on  a remote 3270 cluster,   'VMPT' if
+                         logged on through VM Pass-through (5748-RC1).
+0                   VRT% - Time virtual machine  was dispatched,  as a
++                   VRT%
+                         percentage of wall clock time. (VMVTIME)
+0                   TOT% - Total time (dispatched  + CP time)  charged
++                   TOT%
+                         to user,  as a percentage of wall clock time.
+                         (VMTTIME).
+0                   Q - Queue (1, 2, 3) user was in when examined,  or
++                   Q
+                         'E' if user was eligible.
+0                   F - 'F' if the user is FAVORed; '%' if the user is
++                   F
+                         FAVORed N percent.
+0                   RUN - Running  status  of virtual  machine,   i.e.
++                   RUN
+                         status as seen by the virtual machine itself.
+                         May be RUN, SIO, WAIT, TIOB.
+0                   DISP - Dispatching status of virtual machine, i.e.
++                   DISP
+                         status  as  seen  by CP/370.    May  be  DISP
+                         (dispatched),   CMPB (compute  bound),   PRIV
+                         (Simulating a priveleged  instruction),  PGWT
+                         (waiting for  a CP  paging operation),   IOWT
+                         (waiting   for   the   result   of   an   I/O
+                         instruction), or SL (has gone to sleep).
+0                   SIOS - Non-spooled  SIO instructions  issued,  per
++                   SIOS
+                         second (VMIOCNT).
+0                   PGRT -  Page  rate,   reads +  writes  per  second
++                   PGRT
+                         (VMPGREAD + VMPGWRIT).
+0                   CORE - Real page frames, in K, occupied by virtual
++                   CORE
+                         machine when examined (VMPAGES).  If the user
+                         has SET RESERVE pages, it will be followed by
+                         'R'.
+0                   PRWS - Projected working set, in K (VMWSPROJ).
++                   PRWS
+-
+-
+                                          - 9 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0              Symbol Table - PF7
++              ______ _____   ___
+0                    This display  shows the  entries in  DMKSYM and  their
+               values, sorted in alphabetical order.
+-
+               Symbol Table - PF8
++              ______ _____   ___
+0                   This displays the DMKSYM entries, in address order.
+-
+               Clock - PF12
++              _____   ____
+0                   Just  for fun,   this displays a  digital clock  on the
+               3270.   It  is only  updated every minute,   so it  is quite
+               inexpensive.
+0                   The code for generating  VM/370 printer separator pages
+               was borrowed to generate the digits.
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+0                                         - 10 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                                      MAINTAINENCE
++                                      ____________
+-              To re-assemble individual modules,   use 'CPWA xxx'.   CPBSE
+               and DMKMAC  MACLIBS must be  available on an  accessed disk.
+               Disk D is  assumed to be a temporary disk  to dump listings,
+               etc. on.
+-
+               Non-BSEP Operation Notes
++              ___ ____ _________ _____
+0                   CPWATCH  3 has  not yet  been tested  under a  non-BSEP
+               system.  The author would appreciate hearing from anyone who
+               tries to put it up on one.
+0                   The only known incompatabilities with unmodified VM/370
+               are in the  presence of a 'QUEUE  3' in BSEP.   To  create a
+               version which (should) run on unmodified VM/370:
+0                   &1 - take  'DMKB10'  out of  the  'GLOBAL  MACLIB'
++                   &1
+                         command in 'CPWA EXEC'.
+0                   &1 - change CPWPRM  COPY to  SETB global  variable
++                   &1
+                         '&BSEP' to 0.
+0                   &1 - re-assemble CPWSYS and CPWUSR with 'CPWA SYS'
++                   &1
+                         and 'CPWA USR'.
+-
+               Module Descriptions
++              ______ ____________
+0
+0                   CPWSUP - Supervisor and I/O handler.
++                   CPWSUP
+0                   CPWDSP   -  Display   definitions,   and   service
++                   CPWDSP
+                         functions.
+0                   CPWSYS - Examine PSA and build global system page.
++                   CPWSYS
+0                   CPWDEV - Examine RDEVBLOKS  and build Terminal and
++                   CPWDEV
+                         Device pages.
+0                   CPWUSR  - Examine  VMBLOKS  and  build Active  and
++                   CPWUSR
+                         Logged On user pages.
+0                   CPWMAN - Main line logic.
++                   CPWMAN
+0                   CPWASM - Date / Time of last modification.
++                   CPWASM
+-
+0                                         - 11 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                   CPWEND - Initialization/termination routines.
++                   CPWEND
+-
+               COPY CODE
++              ____ ____
+0
+0                   CPWPRM - parameters for assembly.
++                   CPWPRM
+0                   CPWDSC - cross-module DSECTS.
++                   CPWDSC
+0                   SPASSEM - documentation for structured programming
++                   SPASSEM
+                         macros.
+-
+               MACROS
++              ______
+0
+0                   CALL - Call a 'PROC'.
++                   CALL
+0                   CMD - Issue a CP command.
++                   CMD
+0                   CPWSUP - Generate low core CSECT or DSECT.
++                   CPWSUP
+0                   CPWSVC - Generate SVC table entry.
++                   CPWSVC
+0                   DATA - Enter Data CSECT
++                   DATA
+0                   DCP - Request DIAG x'04', display real core.
++                   DCP
+0                   DCPLIST - Generate plist for DCP macro.
++                   DCPLIST
+0                   DEVENTRY - Generate entry in output device table.
++                   DEVENTRY
+0                   DO - Structured programming DO group.
++                   DO
+0                   DSPENTRY - Generate entry in Display table.
++                   DSPENTRY
+0                   DSUB - Doubleword integer subtract.
++                   DSUB
+0                   EDITD - Edits packed  number into external display
++                   EDITD
+                         field.
+0                   IF - Structured programming IF group.
++                   IF
+0                   MODULE - Define application CSECT
++                   MODULE
+0                   PROC - Define application subroutine.
++                   PROC
+-
+0                                         - 12 -
+1
+0              COMINCO                 CPWATCH 3.3           1 October 1980
+0                   SETIME - Set interval timer value.
++                   SETIME
+0                   SPENDCHK -  Check for  all structured  programming
++                   SPENDCHK
+                         figures closed.
+0                   SPOPTION - Structured programming options.
++                   SPOPTION
+0                   STORAGE - Enter dynamic storage DSECT.
++                   STORAGE
+0                   WAIT - Wait on interval timer.
++                   WAIT
+0                   WTO - Write to monitoring machine console.
++                   WTO
+-
+               Problems
++              ________
+0                   Please address any problems or questions to:
+                         G. D. George,
+                         Systems Programmer
+                         COMINCO LTD.
+                         Trail, B. C.
+                         Canada   V1R 4C3
+0                        (604) 364-4940
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+                                          - 13 -
